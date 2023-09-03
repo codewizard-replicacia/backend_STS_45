@@ -76,6 +76,12 @@ const CreateDriverForm = () => {
 
   const submitForm = async () => {
           const { 
+      Long
+      Integer
+        ExperienceInYears
+      Boolean
+      ShiftTime
+      Date
       ...otherData } = formData;
 
       try {

@@ -63,6 +63,14 @@ const CreateRouteForm = () => {
 
   const submitForm = async () => {
           const { 
+      Integer
+        RouteId
+      String
+      String
+      Integer
+        TotalDistanceCovered
+      Integer
+        NumberOfStops
       ...otherData } = formData;
 
       try {

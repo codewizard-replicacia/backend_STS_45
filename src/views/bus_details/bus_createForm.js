@@ -76,6 +76,7 @@ const CreateBusForm = () => {
 
   const submitForm = async () => {
           const { 
+      Long
       ...otherData } = formData;
 
       try {
