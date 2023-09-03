@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Model">
+            <EntityType HasStream="false" Name="Driver">
+                <Key>
+                    <PropertyRef Name="DriverName"/>
+                </Key>
+                <Property Name="DriverName" Type="Edm.String" isUnique="false"/>
+                <Property Name="DrivingLicenseNumber" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="ExperienceInYears" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="ShiftTime" Type="Model.ShiftTime" isUnique="false"/>
+                <Property Name="VerificationStatus" Type="Edm.Boolean" isUnique="false"/>
+                <Property Name="LicenseExpiresAt" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <NavigationProperty Name="Bus" Type="Model.Bus"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Bus">
+                <Key>
+                    <PropertyRef Name="BusId"/>
+                </Key>
+                <Property Name="BusId" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="BusCompany" Type="Edm.String" isUnique="false"/>
+                <Property Name="BusNumber" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="BusName" Type="Edm.String" isUnique="false"/>
+                <Property Name="SeatingCapacity" Type="Edm.Int32" isUnique="false"/>
+                <NavigationProperty Name="Route" Type="Model.Route"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Route">
+                <Key>
+                    <PropertyRef Name="RouteId"/>
+                </Key>
+                <Property Name="RouteId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="StartsAt" Type="Edm.String" isUnique="false"/>
+                <Property Name="EndsAt" Type="Edm.String" isUnique="false"/>
+                <Property Name="TotalDistanceCovered" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="NumberOfStops" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="RouteName" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="Drivers" EntityType="Model.Driver">
+                    <NavigationPropertyBinding Path="Bus" Target="Buses"/>
+                </EntitySet>
+                <EntitySet Name="Buses" EntityType="Model.Bus">
+                    <NavigationPropertyBinding Path="Route" Target="Routes"/>
+                </EntitySet>
+                <EntitySet Name="Routes" EntityType="Model.Route"/>
+            </EntityContainer>
+            <EnumType Name="ShiftTime">
+                <Member Name="Morning" Value="0"/>
+                <Member Name="Evening" Value="1"/>
+                <Member Name="Night" Value="2"/>
+            </EnumType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
